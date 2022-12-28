@@ -39,11 +39,11 @@ const UserContext = ({children}) => {
 
    useEffect(()=>{
       const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
-         console.log('currentUser',currentUser)
+         // console.log('currentUser',currentUser)
          
          if(currentUser !== null){
             setUser(currentUser);
-            console.log('ekhane set hocche user', currentUser)
+            // console.log('ekhane set hocche user', currentUser)
          }
          setLoading(false);
       })
