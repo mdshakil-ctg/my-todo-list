@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../Context/UserContext';
 
 const AddTask = () => {
+   const {user} = useContext(AuthContext)
+   
 
    const key ='10da703fd9c059e121221d8e00fb4d5e';
    const {
@@ -29,7 +33,8 @@ const AddTask = () => {
           if (result.success) {
             const postData = {
               img_url: result.data.url,
-              task: data.text
+              task: data.text,
+              email: user.email
             };
             fetch("http://localhost:5000/task",{
               method: "POST",
@@ -43,6 +48,7 @@ const AddTask = () => {
                 console.log(result);
                 if (result.acknowledged) {
                   toast.success('task added')
+                  Navigate('/my-task')
                 }
               });
           }

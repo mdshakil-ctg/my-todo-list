@@ -8,6 +8,8 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import AddTask from './Components/AddTask';
 import { Toaster } from "react-hot-toast";
+import MyTask from './Components/MyTask';
+import Completed from './Components/Completed';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
       {
         path: '/add-task',
         element: <AddTask></AddTask>
+      },
+      {
+        path: '/my-task',
+        element: <MyTask></MyTask>
+      },
+      {
+        path: '/completed',
+        element: <Completed></Completed>
       },
     ]
   }

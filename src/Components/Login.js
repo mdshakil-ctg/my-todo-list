@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/UserContext';
 
@@ -31,10 +32,32 @@ const Login = () => {
   const googleSignIn = () =>{
     loginWithGoogle()
     .then(result => {
+      saveUserData(result.user.email)
       navigate(from, {replace: true})
     })
     .catch(err => console.log(err))
   }  
+
+  const saveUserData = (email) => {
+    const user = {email};
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if(data.acknowledged){
+          toast('User Log in Succesfully')
+        }
+        
+      })
+      .catch((err) => console.log(err));
+  };
+
    return (
       
 <form onSubmit={handleLogin}>
