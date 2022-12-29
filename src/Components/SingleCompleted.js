@@ -3,8 +3,8 @@ import { toast } from 'react-hot-toast';
 import { Navigate } from 'react-router-dom';
 
 const SingleCompleted = ({tasks, refetch}) => {
-   
    const {img_url, task, _id, status, comment} = tasks;
+   
 
    const handleComplete = id =>{
       console.log(id)
@@ -19,7 +19,7 @@ const SingleCompleted = ({tasks, refetch}) => {
              console.log(data)
              if(data.modifiedCount>0){
                toast('Task has not been completed')
-               Navigate('/completed')
+               Navigate('/my-task')
              }
            });
    }

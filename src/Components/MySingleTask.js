@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const MySingleTask = ({tasks, refetch}) => {
+const MySingleTask = ({tasks}) => {
   const [open, setOpen] = useState(false)
    const {img_url, task, _id, status} = tasks;
-   console.log(tasks)
+   const navigate = useNavigate()
 
    const handleDelete = id =>{
       if (window.confirm("Are You sure to delete?")) {
@@ -16,7 +16,7 @@ const MySingleTask = ({tasks, refetch}) => {
            .then((data) => {
              if (data.deletedCount > 0) {
                toast("Task Deleted Succesfully");
-               refetch();
+              //  refetch();
              }
            });
        }
@@ -35,7 +35,7 @@ const MySingleTask = ({tasks, refetch}) => {
              console.log(data)
              if(data.modifiedCount>0){
                toast('Task has been completed')
-               Navigate('/completed')
+               navigate('/completed')
              }
            });
    }
@@ -60,7 +60,7 @@ const MySingleTask = ({tasks, refetch}) => {
                 console.log(result);
                 if (result.acknowledged) {
                   toast.success('task Updated')
-                  refetch();
+                  // refetch();
                   setOpen(!open)
                 }
               });

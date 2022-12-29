@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/UserContext';
 
 const AddTask = () => {
    const {user} = useContext(AuthContext)
-   
+   const navigate = useNavigate()
 
    const key ='10da703fd9c059e121221d8e00fb4d5e';
    const {
@@ -48,7 +48,7 @@ const AddTask = () => {
                 console.log(result);
                 if (result.acknowledged) {
                   toast.success('task added')
-                  Navigate('/my-task')
+                  navigate('/my-task')
                 }
               });
           }
